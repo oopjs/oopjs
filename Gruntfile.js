@@ -18,6 +18,7 @@ module.exports = function(grunt) {
             example: {
                 files: {
                     'example/js/app.js': [
+                        'src/oopjs/oop.js',
                         'example/app/plugins/*.js',
                         'example/app/controllers/*.js',
                         'example/app/main.js'
