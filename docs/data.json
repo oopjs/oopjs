@@ -1,0 +1,556 @@
+{
+    "project": {
+        "name": "oopjs",
+        "description": "",
+        "version": "0.0.1",
+        "url": ""
+    },
+    "files": {
+        "src/oopjs/oop.js": {
+            "name": "src/oopjs/oop.js",
+            "modules": {
+                "OOP": 1
+            },
+            "classes": {
+                "OOP": 1,
+                "OOP.Class": 1,
+                "OOP.Object": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "OOP": 1
+            }
+        }
+    },
+    "modules": {
+        "OOP": {
+            "name": "OOP",
+            "submodules": {},
+            "classes": {
+                "OOP": 1,
+                "OOP.Class": 1,
+                "OOP.Object": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "OOP": 1
+            },
+            "tag": "module",
+            "file": "src/oopjs/oop.js",
+            "line": 282,
+            "description": "oop.js - Pseudo-object-oriented library for JavaScript",
+            "author": "Drew Ewing",
+            "beta": 1
+        }
+    },
+    "classes": {
+        "OOP": {
+            "name": "OOP",
+            "shortname": "OOP",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OOP",
+            "namespace": "OOP",
+            "file": "src/oopjs/oop.js",
+            "line": 1,
+            "description": "oop.js - Pseudo-object-oriented library for JavaScript"
+        },
+        "OOP.Class": {
+            "name": "OOP.Class",
+            "shortname": "OOP.Class",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OOP",
+            "namespace": "OOP",
+            "file": "src/oopjs/oop.js",
+            "line": 226,
+            "description": "The oop.js class definition constructor",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "- The name of the class to be registered",
+                    "type": "String"
+                }
+            ],
+            "itemtype": "property",
+            "type": "String"
+        },
+        "OOP.Object": {
+            "name": "OOP.Object",
+            "shortname": "OOP.Object",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "OOP",
+            "namespace": "OOP",
+            "file": "src/oopjs/oop.js",
+            "line": 282,
+            "description": "The default object container",
+            "is_constructor": 1,
+            "itemtype": "property",
+            "type": "String"
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 9,
+            "description": "The OOP configuration object",
+            "itemtype": "property",
+            "name": "config",
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 18,
+            "description": "Debug to the console",
+            "itemtype": "method",
+            "name": "debug",
+            "params": [
+                {
+                    "name": "arguments",
+                    "description": "- Anything you want to debug",
+                    "type": "Mixed"
+                }
+            ],
+            "example": [
+                "\n     $oop.debug('Testing 1, 2, 3', someObject, someMethod);"
+            ],
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 33,
+            "description": "Create a new object from a registered class definition",
+            "itemtype": "method",
+            "name": "new",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "- A registered class name"
+                }
+            ],
+            "return": {
+                "description": "- Returns a newly instantiated object",
+                "type": "OOP.Object"
+            },
+            "is_constructor": 1,
+            "example": [
+                "\n     var object = $oop.new('MyClass');"
+            ],
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 62,
+            "description": "The registry of class definitions",
+            "itemtype": "property",
+            "name": "_classRegistry",
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 67,
+            "description": "Retrieve a {{#crossLink \"OOP.Class\"}}class definition{{/crossLink}} given a class name",
+            "itemtype": "method",
+            "name": "getClass",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "- The class name"
+                }
+            ],
+            "return": {
+                "description": "- The {{#crossLink \"OOP.Class\"}}class definition{{/crossLink}} of the given class",
+                "type": "OOP.Class"
+            },
+            "example": [
+                "\n     var classDef = $oop.getClass('MyClass')"
+            ],
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 82,
+            "description": "Execute the provided method when the OOP service is waiting",
+            "itemtype": "method",
+            "name": "ready",
+            "params": [
+                {
+                    "name": "method",
+                    "description": "- A method to execute when the OOP environment is ready"
+                }
+            ],
+            "example": [
+                "\n     $oop.ready(function() { console.log(\"I'm ready!\"); });"
+            ],
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 98,
+            "description": "Look for needle in haystack",
+            "itemtype": "method",
+            "name": "contains",
+            "params": [
+                {
+                    "name": "needle",
+                    "description": "- The value to look for"
+                },
+                {
+                    "name": "haystack",
+                    "description": "- An array or object to look in"
+                }
+            ],
+            "return": {
+                "description": "- True/False",
+                "type": "Boolean"
+            },
+            "example": [
+                "\n     if($oop.contains(needle, haystack)) { doSomething(); }"
+            ],
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 115,
+            "description": "Duplicate an object",
+            "itemtype": "method",
+            "name": "clone",
+            "params": [
+                {
+                    "name": "source",
+                    "description": "- The function or object to clone"
+                }
+            ],
+            "return": {
+                "description": "- A duplicate of the provided function or object",
+                "type": "Function|Object"
+            },
+            "example": [
+                "\n     var cloned = $oop.clone(object);"
+            ],
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 145,
+            "description": "Register a function to be called when a matching {{#crossLink \"OOP.hook\"}}hook event{{/crossLink}} occurs",
+            "itemtype": "method",
+            "name": "onHook",
+            "params": [
+                {
+                    "name": "hook",
+                    "description": "- The hook to listen for"
+                },
+                {
+                    "name": "method",
+                    "description": "- The method to call when hooked"
+                }
+            ],
+            "example": [
+                "\n     $oop.onHook('login', function() { doSomething(); });"
+            ],
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 163,
+            "description": "Hook the given string, calling matching registered {{#crossLink \"OOP.onHook\"}}onHook{{/crossLink}} events",
+            "itemtype": "method",
+            "name": "hook",
+            "params": [
+                {
+                    "name": "hook",
+                    "description": "- The string to hook"
+                },
+                {
+                    "name": "data",
+                    "description": "- The data provided to matching  events",
+                    "type": "OnHook"
+                }
+            ],
+            "return": {
+                "description": "- The data is sequentially passed to and returned by onHook events, and the result is returned",
+                "type": "*"
+            },
+            "example": [
+                "\n     $oop.hook('login', userData);"
+            ],
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 186,
+            "description": "Creates a new Object and appends to it the methods and properties from a and b",
+            "itemtype": "method",
+            "name": "_extend",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "- An object or function"
+                },
+                {
+                    "name": "b",
+                    "description": "- An object or function"
+                }
+            ],
+            "return": {
+                "description": "- An object"
+            },
+            "example": [
+                "\n     var mergedObj = $oop._extend(funcA, funcB);"
+            ],
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 211,
+            "description": "The OOP service ready state",
+            "itemtype": "property",
+            "name": "_ready",
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 216,
+            "description": "The qeue of methods to be executed when a ready state is achieved",
+            "itemtype": "property",
+            "name": "_onReady",
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 221,
+            "description": "The qeue of methods to be executed when hooks occur",
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 245,
+            "description": "Extend another registered class",
+            "itemtype": "method",
+            "name": "extends",
+            "chainable": 1,
+            "example": [
+                "\n     OOP.Class('Child').extends('Parent').via(function(){});"
+            ],
+            "params": [
+                {
+                    "name": "name",
+                    "description": "- The name of the class to extend"
+                }
+            ],
+            "class": "OOP.Class",
+            "module": "OOP",
+            "namespace": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 260,
+            "description": "Define a function to serve as this class's userland",
+            "itemtype": "method",
+            "name": "via",
+            "chainable": 1,
+            "example": [
+                "\n     OOP.Class('Child').extends('Parent').via(function(){});"
+            ],
+            "params": [
+                {
+                    "name": "method",
+                    "description": "- The userland function"
+                }
+            ],
+            "class": "OOP.Class",
+            "module": "OOP",
+            "namespace": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 292,
+            "class": "OOP.Object",
+            "module": "OOP",
+            "namespace": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 297,
+            "description": "Retrieve the parent class",
+            "itemtype": "method",
+            "name": "getParent",
+            "example": [
+                "\n     function extendedFunc() { this.getParent().extendedFunc(); somethingElse(); }"
+            ],
+            "return": {
+                "description": "The userland object of the parent class",
+                "type": "OOP.Class"
+            },
+            "class": "OOP.Object",
+            "module": "OOP",
+            "namespace": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 310,
+            "description": "Determine if this object is an instance of a given class",
+            "itemtype": "method",
+            "name": "instanceOf",
+            "example": [
+                "\n     if(someObj.instanceOf('someOtherObj')) { doSomething(); }"
+            ],
+            "params": [
+                {
+                    "name": "name",
+                    "description": "- The class name in question"
+                }
+            ],
+            "return": {
+                "description": "True or false",
+                "type": "Boolean"
+            },
+            "class": "OOP.Object",
+            "module": "OOP",
+            "namespace": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 322,
+            "class": "OOP.Object",
+            "module": "OOP",
+            "namespace": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 326,
+            "description": "An alias to {{#crossLink \"OOP.Class\"}}{{/crossLink}}",
+            "return": {
+                "description": "",
+                "type": "OOP.Class"
+            },
+            "class": "OOP.Object",
+            "module": "OOP",
+            "namespace": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 334,
+            "description": "An alias to {{#crossLink \"OOP.New\"}}{{/crossLink}}",
+            "return": {
+                "description": "",
+                "type": "OOP.New"
+            },
+            "class": "OOP.Object",
+            "module": "OOP",
+            "namespace": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 340,
+            "description": "Notifies the OOP service that it is ready",
+            "class": "OOP.Object",
+            "module": "OOP",
+            "namespace": "OOP"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: prop with property",
+            "line": " src/oopjs/oop.js:9"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/oopjs/oop.js:33"
+        },
+        {
+            "message": "replacing incorrect tag: prop with property",
+            "line": " src/oopjs/oop.js:62"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/oopjs/oop.js:67"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/oopjs/oop.js:98"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/oopjs/oop.js:115"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/oopjs/oop.js:163"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/oopjs/oop.js:186"
+        },
+        {
+            "message": "replacing incorrect tag: prop with property",
+            "line": " src/oopjs/oop.js:211"
+        },
+        {
+            "message": "replacing incorrect tag: prop with property",
+            "line": " src/oopjs/oop.js:216"
+        },
+        {
+            "message": "replacing incorrect tag: prop with property",
+            "line": " src/oopjs/oop.js:226"
+        },
+        {
+            "message": "replacing incorrect tag: prop with property",
+            "line": " src/oopjs/oop.js:226"
+        },
+        {
+            "message": "replacing incorrect tag: prop with property",
+            "line": " src/oopjs/oop.js:226"
+        },
+        {
+            "message": "Missing item type\nThe qeue of methods to be executed when hooks occur",
+            "line": " src/oopjs/oop.js:221"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/oopjs/oop.js:292"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/oopjs/oop.js:322"
+        },
+        {
+            "message": "Missing item type\nAn alias to {{#crossLink \"OOP.Class\"}}{{/crossLink}}",
+            "line": " src/oopjs/oop.js:326"
+        },
+        {
+            "message": "Missing item type\nAn alias to {{#crossLink \"OOP.New\"}}{{/crossLink}}",
+            "line": " src/oopjs/oop.js:334"
+        },
+        {
+            "message": "Missing item type\nNotifies the OOP service that it is ready",
+            "line": " src/oopjs/oop.js:340"
+        }
+    ]
+}

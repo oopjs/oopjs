@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src/oopjs/oop.js - oopjs</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.7.0/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+        
+	    <img alt="oopjs" src="../assets/css/logo.png" style="max-height: 65%;" title="oopjs">
+        
+            oopjs
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>0.0.1</b>
+                </p>
+            </li>
+        </div>
+        <form class="navbar-form pull-right" style="line-height: 40px; height: 40px;">
+            <input style="margin-top: 0;" type="text" class="search-query" placeholder="Search for classes/modules..." data-obj='["classes/OOP", "classes/OOP.Class", "classes/OOP.Object", "modules/OOP"]'>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	    <div>
+    <h3>APIs</h3>
+    <div id="sidebar">
+        <ul id="main-nav" class="nav nav-tabs" style="margin-bottom:0;">
+            <li class="active"><a href="#classes" data-toggle="tab">Classes</a></li>
+            <li><a href="#modules" data-toggle="tab">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #DDD; border-top:0;">
+            <div class="tab-pane active" id="classes">
+                <ul id="api-classes" class="nav nav-list">
+                    
+                        <li><a href="../classes/OOP.html">OOP</a></li>
+                    
+                        <li><a href="../classes/OOP.Class.html">OOP.Class</a></li>
+                    
+                        <li><a href="../classes/OOP.Object.html">OOP.Object</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="tab-pane" id="modules">
+                <ul id="api-modules" class="nav nav-list">
+                    
+                        <li><a href="../modules/OOP.html">OOP</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="span9">
+                <form id="options-form" class="form-inline pull-right">
+        Show:
+        <label for="api-show-inherited" class="checkbox">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected" class="checkbox">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private" class="checkbox">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated" class="checkbox">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </form>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+    <h1>src/oopjs/oop.js <small>File</small></h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/**
+ * oop.js - Pseudo-object-oriented library for JavaScript
+ * @module OOP
+ * @class OOP
+ * @author Drew Ewing
+ * @beta
+ **/
+var OOP = function() {
+    /**
+     * The OOP configuration object
+     * @prop config
+     **/
+    this.config = {
+        debug: false,
+        debugLevel: 1,
+        baseURL: &#x27;/&#x27;
+    };
+    /**
+     * Debug to the console
+     * @method debug
+     * @param {mixed} arguments - Anything you want to debug
+     * @example
+     *      $oop.debug(&#x27;Testing 1, 2, 3&#x27;, someObject, someMethod);
+     */
+    this.debug = function () {
+        if ($oop.config.debug &amp;&amp; typeof(console !== &#x27;undefined&#x27;) &amp;&amp; typeof(console.log !== &#x27;undefined&#x27;)) {
+            try {
+                console.log(&#x27;[OOPJS]&#x27;, arguments);
+            } catch (e) {
+            }
+        }
+    };
+    /**
+     * Create a new object from a registered class definition
+     * @method new
+     * @param name - A registered class name
+     * @returns {OOP.Object} - Returns a newly instantiated object
+     * @constructor
+     * @example
+     *      var object = $oop.new(&#x27;MyClass&#x27;);
+     **/
+    this.new = function (name) {
+        var classDef = $oop.getClass(name);
+        var object = new OOP.Object();
+        // Build the parent(s) first
+        if (classDef._extends) {
+            var parent = $oop.getClass(classDef._extends);
+            object = $oop._extend(object, parent._userland);
+            object._extends = classDef._extends;
+        }
+        // Extend the object from the class&#x27;s defined userland
+        object = $oop._extend(object, classDef._userland);
+        return (function (obj) {
+            return function () {
+                if (typeof(obj.construct) !== &#x27;undefined&#x27;) {
+                    obj.construct.apply(obj, arguments);
+                }
+                return obj;
+            };
+        })(object);
+    };
+    /**
+     * The registry of class definitions
+     * @prop _classRegistry
+     **/
+    this._classRegistry = {};
+    /**
+     * Retrieve a {{#crossLink &quot;OOP.Class&quot;}}class definition{{/crossLink}} given a class name
+     * @method getClass
+     * @param name - The class name
+     * @returns {OOP.Class} - The {{#crossLink &quot;OOP.Class&quot;}}class definition{{/crossLink}} of the given class
+     * @example
+     *      var classDef = $oop.getClass(&#x27;MyClass&#x27;)
+     */
+    this.getClass = function (name) {
+        var classDef = this._classRegistry[name];
+        if (typeof(classDef) === &#x27;undefined&#x27;) {
+            throw &#x27;Class &quot;&#x27; + name + &#x27;&quot; is undefined&#x27;;
+        }
+        return classDef;
+    };
+    /**
+     * Execute the provided method when the OOP service is waiting
+     * @method ready
+     * @param method - A method to execute when the OOP environment is ready
+     * @example
+     *      $oop.ready(function() { console.log(&quot;I&#x27;m ready!&quot;); });
+     */
+    this.ready = function (method) {
+        $oop._onReady.push(method);
+        if ($oop._ready) {
+            for (var x in $oop._onReady) {
+                $oop._onReady[x]();
+            }
+            $oop._onReady = [];
+        }
+    };
+    /**
+     * Look for needle in haystack
+     * @method contains
+     * @param needle - The value to look for
+     * @param haystack - An array or object to look in
+     * @returns {boolean} - True/False
+     * @example
+     *      if($oop.contains(needle, haystack)) { doSomething(); }
+     */
+    this.contains = function (needle, haystack) {
+        for (var i in haystack) {
+            if (haystack[i] === needle) {
+                return true;
+            }
+        }
+        return false;
+    };
+    /**
+     * Duplicate an object
+     * @method clone
+     * @param source - The function or object to clone
+     * @returns {Function|Object} - A duplicate of the provided function or object
+     * @example
+     *      var cloned = $oop.clone(object);
+     */
+    this.clone = function (source) {
+        var cloned;
+        if (typeof(source) === &#x27;function&#x27;) {
+            cloned = function () {
+            };
+            var dupe = new source();
+            for (var x in dupe) {
+                cloned[x] = dupe[x];
+            }
+            for (var y in dupe.prototype) {
+                cloned[y] = dupe[y];
+            }
+        } else {
+            cloned = {};
+            if (typeof(source) === &#x27;object&#x27;) {
+                for (var z in source) {
+                    cloned[z] = source[z];
+                }
+            }
+        }
+        return cloned;
+    };
+    /**
+     * Register a function to be called when a matching {{#crossLink &quot;OOP.hook&quot;}}hook event{{/crossLink}} occurs
+     * @method onHook
+     * @param hook - The hook to listen for
+     * @param method - The method to call when hooked
+     * @example
+     *      $oop.onHook(&#x27;login&#x27;, function() { doSomething(); });
+     */
+    this.onHook = function (hook, method) {
+        if (typeof($oop._hooks[hook]) === &#x27;undefined&#x27;) {
+            $oop._hooks[hook] = [];
+        }
+        if (typeof(method) === &#x27;function&#x27;) {
+            $oop._hooks[hook].push(method);
+        } else {
+            throw &quot;Hook method must be a function&quot;;
+        }
+    };
+    /**
+     * Hook the given string, calling matching registered {{#crossLink &quot;OOP.onHook&quot;}}onHook{{/crossLink}} events
+     * @method hook
+     * @param hook - The string to hook
+     * @param data - The data provided to matching {onHook} events
+     * @returns {*} - The data is sequentially passed to and returned by onHook events, and the result is returned
+     * @example
+     *      $oop.hook(&#x27;login&#x27;, userData);
+     */
+    this.hook = function (hook, data) {
+        if (typeof($oop._hooks[hook]) === &#x27;object&#x27;) {
+            for (var i in $oop._hooks[hook]) {
+                var method = $oop._hooks[hook][i];
+                if (typeof(method) === &#x27;function&#x27;) {
+                    var tdata = method(data);
+                    if (typeof(tdata) !== &#x27;undefined&#x27; &amp;&amp; tdata.length &gt; 0) {
+                        data = tdata;
+                    }
+                }
+            }
+        }
+        return data;
+    };
+    /**
+     * Creates a new Object and appends to it the methods and properties from a and b
+     * @method _extend
+     * @param a - An object or function
+     * @param b - An object or function
+     * @returns - An object
+     * @example
+     *      var mergedObj = $oop._extend(funcA, funcB);
+     **/
+    this._extend = function (a, b) {
+        var c = {};
+        for (var w in a) {
+            c[w] = a[w];
+        }
+        for (var x in b) {
+            c[x] = b[x];
+        }
+        for (var y in a.prototype) {
+            c[y] = a.prototype[y];
+        }
+        for (var z in b.prototype) {
+            c[z] = b.prototype[z];
+        }
+        return c;
+    };
+    /**
+     * The OOP service ready state
+     * @prop _ready
+     */
+    this._ready = false;
+    /**
+     * The qeue of methods to be executed when a ready state is achieved
+     * @prop _onReady
+     */
+    this._onReady = [];
+    /**
+     * The qeue of methods to be executed when hooks occur
+     */
+    this._hooks = {};
+};
+/**
+ * The oop.js class definition constructor
+ * @namespace OOP
+ * @class Class
+ * @constructor
+ *
+ * @param {string} name - The name of the class to be registered
+ *
+ * @prop {string} _name - The name of the class
+ * @prop {string} _extends - The name of the parent class
+ * @prop {object} _userland - The source container for the class
+ **/
+OOP.Class = function (name) {
+    this._name = name || &#x27;OOP.Class&#x27;;
+    this._extends = null;
+    this._userland = {};
+    $oop._classRegistry[name] = this;
+    return this;
+};
+/**
+ * Extend another registered class
+ *
+ * @method extends
+ * @chainable
+ * @example
+ *      OOP.Class(&#x27;Child&#x27;).extends(&#x27;Parent&#x27;).via(function(){});
+ *
+ * @param name - The name of the class to extend
+ */
+OOP.Class.prototype.extends = function (name) {
+    this._extends = name;
+    return this;
+};
+
+/**
+ * Define a function to serve as this class&#x27;s userland
+ *
+ * @method via
+ * @chainable
+ * @example
+ *      OOP.Class(&#x27;Child&#x27;).extends(&#x27;Parent&#x27;).via(function(){});
+ *
+ * @param method - The userland function
+ */
+OOP.Class.prototype.via = function (method) {
+    this._userland = {};
+    var dummy = new method();
+    for (var x in dummy) {
+        this._userland[x] = dummy[x];
+    }
+    for (var y in dummy.prototype) {
+        this._userland[y] = dummy.prototype[y];
+    }
+    return this;
+};
+
+/**
+ * The default object container
+ * @namespace OOP
+ * @class Object
+ * @constructor
+ *
+ * @property {string} _name     The name of the object
+ * @property {string} _extends  The name of the parent object
+ **/
+OOP.Object = function () {
+    /** The default object properties **/
+    this._name = &#x27;OOP.Object&#x27;;
+    this._extends = null;
+};
+
+/**
+ * Retrieve the parent class
+ *
+ * @method getParent
+ * @example
+ *      function extendedFunc() { this.getParent().extendedFunc(); somethingElse(); }
+ *
+ * @return {OOP.Class} The userland object of the parent class
+ */
+OOP.Object.prototype.getParent = function () {
+    return $oop.getClass(this._extends)._userland || false;
+};
+
+/**
+ * Determine if this object is an instance of a given class
+ *
+ * @method instanceOf
+ * @example
+ *      if(someObj.instanceOf(&#x27;someOtherObj&#x27;)) { doSomething(); }
+ *
+ * @param name - The class name in question
+ *
+ * @return {boolean} True or false
+ */
+OOP.Object.prototype.instanceOf = function (name) {
+    /** TODO: Track ancestry **/
+    return (name === this._extends);
+};
+
+/**
+ * An alias to {{#crossLink &quot;OOP.Class&quot;}}{{/crossLink}}
+ * @return {OOP.Class}
+ */
+var $class = function(name) { return new OOP.Class(name); };
+
+var $oop = window.$oop = new OOP();
+
+/**
+ * An alias to {{#crossLink &quot;OOP.New&quot;}}{{/crossLink}}
+ * @return {OOP.New}
+ */
+var $new = $oop.new;
+
+/**
+ * Notifies the OOP service that it is ready
+ */
+window.onload = function() {
+    $oop._ready = true;
+    $oop.debug(&#x27;Window is ready, processing ready callbacks&#x27;);
+    $oop.ready(function(){$oop.debug(&#x27;OOP is ready&#x27;);});
+};
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
