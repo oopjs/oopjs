@@ -1,10 +1,10 @@
-oopjs
+# oop.js
 =====
 [oop.js](http://www.oopjs.com) is a lightweight pseudo-object-oriented library for extendable and reusable objects in JavaScript.
 This software is released as-is under an MIT license, and offered with no guarantees, implied or otherwise.
 You may copy, modify, and redistribute oop.js freely and without limitation.
 
-# Basic Usage
+Basic Usage
 =====
 Defining a new class:
 ```javascript
@@ -43,6 +43,6 @@ Would output:
 Foo, 30
 ```
 
-# More Information
+More Information
 =====
 You can learn more at http://www.oopjs.com/docs
