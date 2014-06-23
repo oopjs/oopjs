@@ -6,7 +6,6 @@ You may copy, modify, and redistribute oop.js freely and without limitation.
 `Developed by [aewing](http://www.github.com/aewing)`
 
 ## Basic Usage
-=====
 Defining a new class:
 ```javascript
 $class('Bar').via(function() {
@@ -45,5 +44,4 @@ Foo, 30
 ```
 
 ### More Information
-=====
 You can learn more at http://www.oopjs.com/docs
