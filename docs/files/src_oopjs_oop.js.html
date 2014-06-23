@@ -150,11 +150,16 @@ var OOP = function() {
     this.new = function (name) {
         var classDef = $oop.getClass(name);
         var object = new OOP.Object();
-        // Build the parent(s) first
-        if (classDef._extends) {
-            var parent = $oop.getClass(classDef._extends);
-            object = $oop._extend(object, parent._userland);
-            object._extends = classDef._extends;
+        // Extract the ancestors array first
+        classDef._ancestors = $oop._extractAncestors(classDef._ancestors);
+        if (classDef._ancestors.length &gt; 0) {
+            for(var x in classDef._ancestors) {
+                var ancestor = $oop.getClass(classDef._ancestors[x]);
+                object = $oop._extend(object, ancestor._userland);
+                for(var y in classDef._ancestors) {
+                    object._ancestors.push(classDef._ancestors[y]);
+                }
+            }
         }
         // Extend the object from the class&#x27;s defined userland
         object = $oop._extend(object, classDef._userland);
@@ -166,6 +171,17 @@ var OOP = function() {
                 return obj;
             };
         })(object);
+    };
+    this._extractAncestors = function(ancestors) {
+        ancestors = ancestors || [];
+        for(var x in ancestors) {
+            var ancestor = $oop.getClass(ancestors[x]);
+            var ancestorsAppend = $oop._extractAncestors(ancestor._ancestors);
+            for(var y in ancestorsAppend) {
+                ancestors.push(ancestorsAppend[y]);
+            }
+        }
+        return ancestors;
     };
     /**
      * The registry of class definitions
@@ -340,12 +356,12 @@ var OOP = function() {
  * @param {string} name - The name of the class to be registered
  *
  * @prop {string} _name - The name of the class
- * @prop {string} _extends - The name of the parent class
+ * @prop {string} _ancestors - An array of the ancestor classes
  * @prop {object} _userland - The source container for the class
  **/
 OOP.Class = function (name) {
     this._name = name || &#x27;OOP.Class&#x27;;
-    this._extends = null;
+    this._ancestors = [];
     this._userland = {};
     $oop._classRegistry[name] = this;
     return this;
@@ -361,7 +377,7 @@ OOP.Class = function (name) {
  * @param name - The name of the class to extend
  */
 OOP.Class.prototype.extends = function (name) {
-    this._extends = name;
+    this._ancestors.push(name);
     return this;
 };
 
@@ -394,12 +410,12 @@ OOP.Class.prototype.via = function (method) {
  * @constructor
  *
  * @property {string} _name     The name of the object
- * @property {string} _extends  The name of the parent object
+ * @property {array} _ancestors   An array of ancestor class names
  **/
 OOP.Object = function () {
     /** The default object properties **/
     this._name = &#x27;OOP.Object&#x27;;
-    this._extends = null;
+    this._ancestors = [];
 };
 
 /**
@@ -412,7 +428,7 @@ OOP.Object = function () {
  * @return {OOP.Class} The userland object of the parent class
  */
 OOP.Object.prototype.getParent = function () {
-    return $oop.getClass(this._extends)._userland || false;
+    return $oop.getClass(this._ancestors[this._ancestors.length])._userland || false;
 };
 
 /**
@@ -428,7 +444,7 @@ OOP.Object.prototype.getParent = function () {
  */
 OOP.Object.prototype.instanceOf = function (name) {
     /** TODO: Track ancestry **/
-    return (name === this._extends);
+    return $oop.contains(name, this._ancestors);
 };
 
 /**

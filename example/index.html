@@ -65,13 +65,20 @@ $class('Person').via(function() {
     };
 });
 
-$class('CoolerPerson').extends('Person').via(function() {
-    this.type = 'cooler person';
-    this.proof = function() { output("Here's your proof. [banana]"); }
+$class('CoolPerson').extends('Person').via(function() {
+    this.type = 'cool person';
+    this.ancestor = 'person';
 });
 
-var person = $new('Person')('Bob', 20);
-var coolerPerson = $new('CoolerPerson')('Bobby', 21);
+$class('CoolerPerson').extends('CoolPerson').via(function() {
+    this.type = 'cooler person';
+    this.proof = function() { output("Here's your proof. [banana]"); }
+    this.ancestor = 'cool person';
+});
+
+var person = $new('Person')('Bo', 40);
+var coolPerson = $new('CoolPerson')('Bob',30);
+var coolerPerson = $new('CoolerPerson')('Bobby', 20);
 coolerPerson.proof();
         </div>
         <hr/>
@@ -93,7 +100,9 @@ coolerPerson.proof();
 <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     function output(message) {
-        $output.dom()[0].innerHTML += message + "<hr/>";
+        var container = $output.dom()[0];
+        container.innerHTML += message + "<hr/>";
+        container.scrollTop = container.scrollHeight;
     }
     window.output = output;
     var editor = ace.edit("editor");
@@ -102,6 +111,7 @@ coolerPerson.proof();
     $oop.ready(function() {
         eval(editor.getValue());
         $elem('#execute').event('click', function() {
+            $oop._classRegistry = {};
             eval(editor.getValue());
         });
     });
