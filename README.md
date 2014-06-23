@@ -3,7 +3,7 @@
 This software is released as-is under an MIT license, and offered with no guarantees, implied or otherwise.
 You may copy, modify, and redistribute oop.js freely and without limitation.
 
-`Developed by [aewing](http://www.github.com/aewing)`
+Developed by [aewing](http://www.github.com/aewing)
 
 ## Basic Usage
 Defining a new class:
