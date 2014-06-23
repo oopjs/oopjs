@@ -1,0 +1,6 @@
+html, body {  font-family: source-sans-pro, 'Source Sans Pro', sans; font-size: 1em; line-height: 1.5em; letter-spacing: 0.0625em; margin: 0px; padding: 0px; height: 100%; background-color: #dddddd; color: #111111; text-rendering: optimizeLegibility; }
+.ui.main.grid { height: 100%; }
+#oop-example { position: relative; height: 100%; padding-right: 20px; }
+#editor { width: auto; height: 420px; font-size: 16px; }
+#output { max-height: 300px; overflow: auto; }
+.right.aligned { text-align: right; }
