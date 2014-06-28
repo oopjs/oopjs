@@ -50,36 +50,35 @@
             </p>
         </div>
         <div id="editor">/** OOP.JS Demonstration **/
-$class('Person').via(function() {
-    this.name = '';
-    this.age = 0;
-    this.type = 'person';
-    this.ancestor = 'monkey';
+$class('Foo').via(function() {
+    this.a = null;
+    this.b = null;
+    this.c = null;
+    this.d = null;
     this.describe = function() {
-        output('I am ' + this.name + ', a ' + this.age + ' year old ' + this.type + '. I evolved from a ' + this.ancestor + '.');
+        output('[' + this._name + '], A: ' + this.a + ', B: ' + this.b + ', C: ' + this.c + ', ' + this.d);
     };
-    this.construct = function(name, age) {
-        this.name = name;
-        this.age = age;
+    this.construct = function(a, b) {
+        this.a = a;
+        this.b = b;
         this.describe();
     };
 });
 
-$class('CoolPerson').extends('Person').via(function() {
-    this.type = 'cool person';
-    this.ancestor = 'person';
+$class('Bar').extends('Foo').via(function() {
+    this.c = 'class bar';
+    this.d = 'extends foo';
 });
 
-$class('CoolerPerson').extends('CoolPerson').via(function() {
-    this.type = 'cooler person';
-    this.proof = function() { output("Here's your proof. [banana]"); }
-    this.ancestor = 'cool person';
+$class('Baz').extends('Bar').via(function() {
+    this.c = 'class baz';
+    this.d = 'extends bar';
+    this.e = function() { output("Baz:e()"); }
 });
-
-var person = $new('Person')('Bo', 40);
-var coolPerson = $new('CoolPerson')('Bob',30);
-var coolerPerson = $new('CoolerPerson')('Bobby', 20);
-coolerPerson.proof();
+var foo = new Foo('Foo', 1);
+var bar = new Bar('Bar', 2);
+var baz = new Baz('Baz', 3);
+baz.e();
         </div>
         <hr/>
         <div class="right aligned">

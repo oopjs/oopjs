@@ -18,7 +18,10 @@ $class('Bar').via(function() {
         return this.a + this.b;
     }
 });
-var bar = $new('Bar')(5, 10);
+```
+Instantiating and using the class:
+```
+var bar = new Bar(5, 10);
 console.log(bar.name, bar.baz());
 ```
 Would output:
@@ -35,7 +38,7 @@ $class('Foo').extends('Bar').via(function() {
         this.b = b*2;
     };
 });
-var foo = $new('Foo')(5,10);
+var foo = new Foo(5,10);
 console.log(foo.name, foo.baz());
 ```
 Would output:
@@ -45,3 +48,6 @@ Foo, 30
 
 ### More Information
 You can learn more at http://www.oopjs.com/docs
+
+#### Change Log
+6/28/2014 - Added proxy to $oop.new so class objects can be constructed normally

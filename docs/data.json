@@ -37,7 +37,7 @@
             },
             "tag": "module",
             "file": "src/oopjs/oop.js",
-            "line": 298,
+            "line": 310,
             "description": "oop.js - Pseudo-object-oriented library for JavaScript",
             "author": "Drew Ewing",
             "beta": 1
@@ -69,7 +69,7 @@
             "module": "OOP",
             "namespace": "OOP",
             "file": "src/oopjs/oop.js",
-            "line": 242,
+            "line": 250,
             "description": "The oop.js class definition constructor",
             "is_constructor": 1,
             "params": [
@@ -93,7 +93,7 @@
             "module": "OOP",
             "namespace": "OOP",
             "file": "src/oopjs/oop.js",
-            "line": 298,
+            "line": 310,
             "description": "The default object container",
             "is_constructor": 1,
             "itemtype": "property",
@@ -154,7 +154,26 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 78,
+            "line": 69,
+            "description": "Recursively extract ancestors",
+            "params": [
+                {
+                    "name": "ancestors",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "- An array of ancestors",
+                "type": "Array"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "OOP",
+            "module": "OOP"
+        },
+        {
+            "file": "src/oopjs/oop.js",
+            "line": 86,
             "description": "The registry of class definitions",
             "itemtype": "property",
             "name": "_classRegistry",
@@ -163,7 +182,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 83,
+            "line": 91,
             "description": "Retrieve a {{#crossLink \"OOP.Class\"}}class definition{{/crossLink}} given a class name",
             "itemtype": "method",
             "name": "getClass",
@@ -185,7 +204,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 98,
+            "line": 106,
             "description": "Execute the provided method when the OOP service is waiting",
             "itemtype": "method",
             "name": "ready",
@@ -203,7 +222,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 114,
+            "line": 122,
             "description": "Look for needle in haystack",
             "itemtype": "method",
             "name": "contains",
@@ -229,7 +248,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 131,
+            "line": 139,
             "description": "Duplicate an object",
             "itemtype": "method",
             "name": "clone",
@@ -251,7 +270,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 161,
+            "line": 169,
             "description": "Register a function to be called when a matching {{#crossLink \"OOP.hook\"}}hook event{{/crossLink}} occurs",
             "itemtype": "method",
             "name": "onHook",
@@ -273,7 +292,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 179,
+            "line": 187,
             "description": "Hook the given string, calling matching registered {{#crossLink \"OOP.onHook\"}}onHook{{/crossLink}} events",
             "itemtype": "method",
             "name": "hook",
@@ -300,7 +319,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 202,
+            "line": 210,
             "description": "Creates a new Object and appends to it the methods and properties from a and b",
             "itemtype": "method",
             "name": "_extend",
@@ -325,7 +344,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 227,
+            "line": 235,
             "description": "The OOP service ready state",
             "itemtype": "property",
             "name": "_ready",
@@ -334,7 +353,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 232,
+            "line": 240,
             "description": "The qeue of methods to be executed when a ready state is achieved",
             "itemtype": "property",
             "name": "_onReady",
@@ -343,14 +362,14 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 237,
+            "line": 245,
             "description": "The qeue of methods to be executed when hooks occur",
             "class": "OOP",
             "module": "OOP"
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 261,
+            "line": 273,
             "description": "Extend another registered class",
             "itemtype": "method",
             "name": "extends",
@@ -370,7 +389,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 276,
+            "line": 288,
             "description": "Define a function to serve as this class's userland",
             "itemtype": "method",
             "name": "via",
@@ -390,14 +409,14 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 308,
+            "line": 320,
             "class": "OOP.Object",
             "module": "OOP",
             "namespace": "OOP"
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 313,
+            "line": 325,
             "description": "Retrieve the parent class",
             "itemtype": "method",
             "name": "getParent",
@@ -414,7 +433,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 326,
+            "line": 338,
             "description": "Determine if this object is an instance of a given class",
             "itemtype": "method",
             "name": "instanceOf",
@@ -437,14 +456,14 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 338,
+            "line": 350,
             "class": "OOP.Object",
             "module": "OOP",
             "namespace": "OOP"
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 342,
+            "line": 354,
             "description": "An alias to {{#crossLink \"OOP.Class\"}}{{/crossLink}}",
             "return": {
                 "description": "",
@@ -456,7 +475,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 350,
+            "line": 364,
             "description": "An alias to {{#crossLink \"OOP.New\"}}{{/crossLink}}",
             "return": {
                 "description": "",
@@ -468,7 +487,7 @@
         },
         {
             "file": "src/oopjs/oop.js",
-            "line": 356,
+            "line": 370,
             "description": "Notifies the OOP service that it is ready",
             "class": "OOP.Object",
             "module": "OOP",
@@ -485,72 +504,80 @@
             "line": " src/oopjs/oop.js:33"
         },
         {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/oopjs/oop.js:69"
+        },
+        {
             "message": "replacing incorrect tag: prop with property",
-            "line": " src/oopjs/oop.js:78"
+            "line": " src/oopjs/oop.js:86"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/oopjs/oop.js:83"
+            "line": " src/oopjs/oop.js:91"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/oopjs/oop.js:114"
+            "line": " src/oopjs/oop.js:122"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/oopjs/oop.js:131"
+            "line": " src/oopjs/oop.js:139"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/oopjs/oop.js:179"
+            "line": " src/oopjs/oop.js:187"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/oopjs/oop.js:202"
+            "line": " src/oopjs/oop.js:210"
         },
         {
             "message": "replacing incorrect tag: prop with property",
-            "line": " src/oopjs/oop.js:227"
+            "line": " src/oopjs/oop.js:235"
         },
         {
             "message": "replacing incorrect tag: prop with property",
-            "line": " src/oopjs/oop.js:232"
+            "line": " src/oopjs/oop.js:240"
         },
         {
             "message": "replacing incorrect tag: prop with property",
-            "line": " src/oopjs/oop.js:242"
+            "line": " src/oopjs/oop.js:250"
         },
         {
             "message": "replacing incorrect tag: prop with property",
-            "line": " src/oopjs/oop.js:242"
+            "line": " src/oopjs/oop.js:250"
         },
         {
             "message": "replacing incorrect tag: prop with property",
-            "line": " src/oopjs/oop.js:242"
+            "line": " src/oopjs/oop.js:250"
+        },
+        {
+            "message": "Missing item type\nRecursively extract ancestors",
+            "line": " src/oopjs/oop.js:69"
         },
         {
             "message": "Missing item type\nThe qeue of methods to be executed when hooks occur",
-            "line": " src/oopjs/oop.js:237"
+            "line": " src/oopjs/oop.js:245"
         },
         {
             "message": "Missing item type",
-            "line": " src/oopjs/oop.js:308"
+            "line": " src/oopjs/oop.js:320"
         },
         {
             "message": "Missing item type",
-            "line": " src/oopjs/oop.js:338"
-        },
-        {
-            "message": "Missing item type\nAn alias to {{#crossLink \"OOP.Class\"}}{{/crossLink}}",
-            "line": " src/oopjs/oop.js:342"
-        },
-        {
-            "message": "Missing item type\nAn alias to {{#crossLink \"OOP.New\"}}{{/crossLink}}",
             "line": " src/oopjs/oop.js:350"
         },
         {
+            "message": "Missing item type\nAn alias to {{#crossLink \"OOP.Class\"}}{{/crossLink}}",
+            "line": " src/oopjs/oop.js:354"
+        },
+        {
+            "message": "Missing item type\nAn alias to {{#crossLink \"OOP.New\"}}{{/crossLink}}",
+            "line": " src/oopjs/oop.js:364"
+        },
+        {
             "message": "Missing item type\nNotifies the OOP service that it is ready",
-            "line": " src/oopjs/oop.js:356"
+            "line": " src/oopjs/oop.js:370"
         }
     ]
 }
