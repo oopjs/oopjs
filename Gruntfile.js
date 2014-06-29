@@ -44,7 +44,8 @@ module.exports = function (grunt) {
             "window": true,
             "XMLHttpRequest": true,
             "console": true,
-            "global": true
+            "global": true,
+            "module": true
           }
         },
         files: {

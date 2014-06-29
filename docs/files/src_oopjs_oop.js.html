@@ -374,9 +374,14 @@ OOP.Class = function (name) {
   this._userland = {};
   $oop._classRegistry[name] = this;
   // Register the global class proxy
-  window[name] = function() {
+  var proxy = function () {
     return $oop.new(name).apply(this, arguments);
   };
+  if(typeof(window) !== &#x27;undefined&#x27;) {
+    window[name] = proxy;
+  } else if(typeof(global) !== &#x27;undefined&#x27;) {
+    global[name] = proxy;
+  }
   return this;
 };
 /**
@@ -479,6 +484,7 @@ var $new = $oop.new;
 if(typeof(window) !== &#x27;undefined&#x27;) {
   window.$oop = $oop;
   window.$new = $new;
+  window.$class = $class;
 
   /**
    * Notifies the OOP service that it is ready
@@ -494,6 +500,10 @@ if(typeof(window) !== &#x27;undefined&#x27;) {
   if(typeof(global) !== &#x27;undefined&#x27;) {
     global.$oop = $oop;
     global.$new = $new;
+    global.$class = $class;
+  }
+  if(typeof(module) !== &#x27;undefined&#x27;) {
+    module.exports = $oop;
   }
   $oop._ready = true;
   $oop.ready(function () {

@@ -394,6 +394,9 @@ if(typeof(window) !== 'undefined') {
     global.$new = $new;
     global.$class = $class;
   }
+  if(typeof(module) !== 'undefined') {
+    module.exports = $oop;
+  }
   $oop._ready = true;
   $oop.ready(function () {
     $oop.debug('OOP is ready');
