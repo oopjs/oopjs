@@ -383,6 +383,10 @@ if(typeof(window) !== 'undefined') {
     });
   };
 } else {
+  if(typeof(global) !== 'undefined') {
+    global.$oop = $oop;
+    global.$new = $new;
+  }
   $oop._ready = true;
   $oop.ready(function () {
     $oop.debug('OOP is ready');
