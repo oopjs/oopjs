@@ -266,9 +266,14 @@ OOP.Class = function (name) {
   this._userland = {};
   $oop._classRegistry[name] = this;
   // Register the global class proxy
-  window[name] = function() {
+  var proxy = function () {
     return $oop.new(name).apply(this, arguments);
   };
+  if(typeof(window) !== 'undefined') {
+    window[name] = proxy;
+  } else if(typeof(global) !== 'undefined') {
+    global[name] = proxy;
+  }
   return this;
 };
 /**
