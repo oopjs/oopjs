@@ -360,7 +360,7 @@ var $class = function (name) {
   return new OOP.Class(name);
 };
 
-var $oop = window.$oop = new OOP();
+var $oop = new OOP();
 
 /**
  * An alias to {{#crossLink "OOP.New"}}{{/crossLink}}
@@ -368,13 +368,23 @@ var $oop = window.$oop = new OOP();
  */
 var $new = $oop.new;
 
-/**
- * Notifies the OOP service that it is ready
- */
-window.onload = function () {
+if(typeof(window) !== 'undefined') {
+  window.$oop = $oop;
+  window.$new = $new;
+
+  /**
+   * Notifies the OOP service that it is ready
+   */
+  window.onload = function () {
+    $oop._ready = true;
+    $oop.debug('Window is ready, processing ready callbacks');
+    $oop.ready(function () {
+      $oop.debug('OOP is ready');
+    });
+  };
+} else {
   $oop._ready = true;
-  $oop.debug('Window is ready, processing ready callbacks');
   $oop.ready(function () {
     $oop.debug('OOP is ready');
   });
-};
+}

@@ -152,13 +152,14 @@ var OOP = function () {
     var object = new OOP.Object();
     // Set object name
     object._name = name;
-    // Extract the ancestors array first
+    // Extract the ancestors array
     classDef._ancestors = $oop._extractAncestors(classDef._ancestors);
     if (classDef._ancestors.length &gt; 0) {
       for (var x in classDef._ancestors) {
         var ancestor = $oop.getClass(classDef._ancestors[x]);
         object = $oop._extend(object, ancestor._userland);
         for (var y in classDef._ancestors) {
+          // Make the class definition aware of all ancestors
           object._ancestors.push(classDef._ancestors[y]);
         }
       }
@@ -467,7 +468,7 @@ var $class = function (name) {
   return new OOP.Class(name);
 };
 
-var $oop = window.$oop = new OOP();
+var $oop = new OOP();
 
 /**
  * An alias to {{#crossLink &quot;OOP.New&quot;}}{{/crossLink}}
@@ -475,16 +476,26 @@ var $oop = window.$oop = new OOP();
  */
 var $new = $oop.new;
 
-/**
- * Notifies the OOP service that it is ready
- */
-window.onload = function () {
+if(typeof(window) !== &#x27;undefined&#x27;) {
+  window.$oop = $oop;
+  window.$new = $new;
+
+  /**
+   * Notifies the OOP service that it is ready
+   */
+  window.onload = function () {
+    $oop._ready = true;
+    $oop.debug(&#x27;Window is ready, processing ready callbacks&#x27;);
+    $oop.ready(function () {
+      $oop.debug(&#x27;OOP is ready&#x27;);
+    });
+  };
+} else {
   $oop._ready = true;
-  $oop.debug(&#x27;Window is ready, processing ready callbacks&#x27;);
   $oop.ready(function () {
     $oop.debug(&#x27;OOP is ready&#x27;);
   });
-};
+}
     </pre>
 </div>
 
