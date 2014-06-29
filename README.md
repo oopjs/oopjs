@@ -45,9 +45,19 @@ Output:
 Foo, 30
 ```
 
+### Install with Bower
+To install oop.js with Bower, type the following from your project directory:
+```
+bower install https://github.com/oopjs/oopjs.git    
+```
+Then you can ```require('oopjs')``` or you include the oop.js file, or in the browser:
+```html
+<script src="bower_components/oopjs/src/oopjs/oop.js" type="text/javascript"></script>
+```
+
 ### More Information
 To learn more, check out the [documentation](http://www.oopjs.com/docs) or [try oop.js now](http://www.oopjs.com/).
 
 #### Change Log
 + 6/28/2014 - Added proxy to $oop.new so class objects can be constructed normally
-+ 6/29/2014 - Added support for Node.JS
++ 6/29/2014 - Added support for Node.JS & Bower
