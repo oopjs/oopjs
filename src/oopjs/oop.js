@@ -371,6 +371,7 @@ var $new = $oop.new;
 if(typeof(window) !== 'undefined') {
   window.$oop = $oop;
   window.$new = $new;
+  window.$class = $class;
 
   /**
    * Notifies the OOP service that it is ready
@@ -386,6 +387,7 @@ if(typeof(window) !== 'undefined') {
   if(typeof(global) !== 'undefined') {
     global.$oop = $oop;
     global.$new = $new;
+    global.$class = $class;
   }
   $oop._ready = true;
   $oop.ready(function () {

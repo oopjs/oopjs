@@ -491,6 +491,10 @@ if(typeof(window) !== &#x27;undefined&#x27;) {
     });
   };
 } else {
+  if(typeof(global) !== &#x27;undefined&#x27;) {
+    global.$oop = $oop;
+    global.$new = $new;
+  }
   $oop._ready = true;
   $oop.ready(function () {
     $oop.debug(&#x27;OOP is ready&#x27;);
