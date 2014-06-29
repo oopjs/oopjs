@@ -23,7 +23,7 @@ Instantiating and using the class:
 var bar = new Bar(5, 10);
 console.log(bar.name, bar.baz());
 ```
-Would output:
+Output:
 ```
 Bar, 15
 ```
@@ -40,13 +40,13 @@ $class('Foo').extends('Bar').via(function() {
 var foo = new Foo(5,10);
 console.log(foo.name, foo.baz());
 ```
-Would output:
+Output:
 ```
 Foo, 30
 ```
 
 ### More Information
-To learn more, check out the [documentation](http://www.oopjs.com/docs) or the [try oop.js now](http://www.oopjs.com/).
+To learn more, check out the [documentation](http://www.oopjs.com/docs) or [try oop.js now](http://www.oopjs.com/).
 
 #### Change Log
 + 6/28/2014 - Added proxy to $oop.new so class objects can be constructed normally
