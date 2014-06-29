@@ -1,8 +1,6 @@
 # oop.js
 [oop.js](http://www.oopjs.com) is a lightweight pseudo-object-oriented library for 
-extendable and reusable objects in JavaScript. oop.js works in the browser and in Node.JS projects.
-This software is released as-is under an MIT license, and offered with no guarantees, implied or otherwise.
-You may copy, modify, and redistribute oop.js freely and without limitation.
+extensible and reusable objects in JavaScript. oop.js works in the browser and in Node.JS projects.
 
 Developed by [aewing](http://www.github.com/aewing)
 
@@ -48,8 +46,8 @@ Foo, 30
 ```
 
 ### More Information
-You can learn more at http://www.oopjs.com/docs
+To learn more, check out the [documentation](http://www.oopjs.com/docs) or the [try oop.js now](http://www.oopjs.com/).
 
 #### Change Log
-6/28/2014 - Added proxy to $oop.new so class objects can be constructed normally
-6/29/2014 - Added support for Node.JS
++ 6/28/2014 - Added proxy to $oop.new so class objects can be constructed normally
++ 6/29/2014 - Added support for Node.JS
