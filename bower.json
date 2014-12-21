@@ -1,0 +1,24 @@
+{
+  "name": "oopjs",
+  "description": "Pseudo-Object Oriented wrappers for JavaScript. Includes an example MVC configuration.",
+  "homepage": "http://www.oopjs.com/",
+  "author": {
+    "name": "Andrew Ewing",
+    "web": "http://www.phenocode.com/"
+  },
+  "main": [
+    "dist/oopjs/oop.js"
+  ],
+  "keywords": [
+    "oop",
+    "js",
+    "object",
+    "oriented",
+    "framework"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "tests"
+  ],
+  "version": "0.0.2"
+}
